@@ -5,7 +5,7 @@
     min-height: 700px;
     height: -webkit-fill-available;
 
-    background: #fff;
+    background: #323033;
     box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12),
         0 8px 10px -5px rgba(0, 0, 0, 0.2);
 
@@ -22,13 +22,13 @@
         width: 94px;
         height: 42px;
         border-radius: 4px;
-        background: rgba(128, 128, 128, 0.614);
+        background: rgb(248, 248, 248);
         cursor: pointer;
     }
 
     .caixa-menu-select
     {
-        background: #27ae60 !important;
+        background: #757272fd !important;
     }
 
     .caixa-menu-texto{
@@ -37,8 +37,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #fefefe;
-        font-weight: bold;
+        color: #353434;
+        font-weight: 400;
     }
 
 }
