@@ -9,7 +9,7 @@ import { MenuService } from 'src/app/services/menu.service';
 })
 export class SidebarComponent {
 
-  constructor(private router: Router, public menuService:MenuService) {
+  constructor(private router: Router, public menuService: MenuService) {
 
   }
 
@@ -31,6 +31,11 @@ export class SidebarComponent {
       case 4:
         this.router.navigate(['/despesa']);
         break;
+
+        case 100:
+          localStorage.clear();          
+          this.router.navigate(['/login']);
+          break;
 
       default:
         break;
