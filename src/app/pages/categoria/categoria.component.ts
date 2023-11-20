@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Categoria } from 'src/app/models/Categoria';
 import { SelectModel } from 'src/app/models/SelectModel';
+import { SistemaFinanceiro } from 'src/app/models/SistemaFinanceiro';
+import { AuthService } from 'src/app/services/auth.service';
+import { CategoriaService } from 'src/app/services/categoria.service';
 import { MenuService } from 'src/app/services/menu.service';
+import { SistemaService } from 'src/app/services/sistema.service';
 
 @Component({
   selector: 'app-categoria',
@@ -10,7 +15,11 @@ import { MenuService } from 'src/app/services/menu.service';
 })
 export class CategoriaComponent {
 
-  constructor(public menuService: MenuService, public formBuilder: FormBuilder) {
+  constructor(public menuService: MenuService,
+    public formBuilder: FormBuilder,
+    public sistemaService: SistemaService,
+    public authService: AuthService,
+    public categoriaService: CategoriaService) {
   }
 
   listSistemas = new Array<SelectModel>();
@@ -24,9 +33,12 @@ export class CategoriaComponent {
     this.categoriaForm = this.formBuilder.group
       (
         {
-          name: ['', [Validators.required]]
+          name: ['', [Validators.required]],
+          sistemaSelect: ['', Validators.required]
         }
       )
+
+    this.ListaSistemasUsuario();
   }
 
 
@@ -38,7 +50,38 @@ export class CategoriaComponent {
     debugger
     var dados = this.dadorForm();
 
-    alert(dados["name"].value)
+    let item = new Categoria();
+    item.Nome = dados["name"].value;
+    item.Id = 0;
+    item.IdSistema = parseInt(this.sistemaSelect.id)
+
+    this.categoriaService.AdicionarCategoria(item)
+      .subscribe((response: Categoria) => {
+
+        this.categoriaForm.reset();
+
+      }, (error) => console.error(error),
+        () => { })
+
+  }
+
+  ListaSistemasUsuario() {
+    this.sistemaService.ListaSistemasUsuario(this.authService.getEmailUser())
+      .subscribe((response: Array<any>) => {
+
+        var listSistemaFinanceiro = [];
+
+        response.forEach(x => {
+          var item = new SelectModel();
+          item.id = x.id.toString();
+          item.name = x.nome;
+
+          listSistemaFinanceiro.push(item);
+
+        });
+
+        this.listSistemas = listSistemaFinanceiro;
+      })
   }
 
 }
