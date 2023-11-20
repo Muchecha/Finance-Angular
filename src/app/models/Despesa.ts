@@ -1,5 +1,4 @@
-export class Despesa
-{
+export class Despesa {
     Id: number;
     Nome: string;
     Valor: number;
@@ -13,4 +12,8 @@ export class Despesa
     Pago: boolean;
     DespesaAtrasada: boolean;
     IdCategoria: number;
+
+    NomePropriedade: string = "";
+    mensagem: string = "";
+    notificacoes: [];
 }
