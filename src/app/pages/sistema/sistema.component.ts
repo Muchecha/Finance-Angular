@@ -119,6 +119,9 @@ export class SistemaComponent {
 
         this.sistemaService.CadastrarUsuarioNoSistema(response.result.id, this.authService.getEmailUser())
           .subscribe((response: any) => {
+
+            this.ListaSistemasUsuario();
+
           }, (error) => console.error(error),
             () => { })
 
