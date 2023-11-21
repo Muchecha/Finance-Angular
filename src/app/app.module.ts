@@ -33,6 +33,7 @@ const RxJS = [LoaderInterceptor, HTTPStatus];
     FormsModule,
     ReactiveFormsModule,  
 
+    
     BrowserAnimationsModule,
     NgxSpinnerModule
   ],
