@@ -8,8 +8,6 @@ import { DespesaRoutingModule } from './despesa-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -26,9 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
             FormsModule,
             ReactiveFormsModule,
             NgSelectModule,
-            MatSlideToggleModule,
-            NgxPaginationModule,
-            MatIconModule
+            MatSlideToggleModule
         ]
     }
 )
