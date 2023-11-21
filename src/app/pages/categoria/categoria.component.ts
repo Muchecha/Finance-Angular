@@ -15,65 +15,6 @@ import { SistemaService } from 'src/app/services/sistema.service';
 })
 export class CategoriaComponent {
 
-  tipoTela: number = 1; // 1 - listagem, 2 - cadastro, 3 - edição
-  tableListCategorias: Array<any>;
-  id: string;
-
-  page: number = 1;
-  config: any;
-  paginacao: boolean = true;
-  itemsPorPagina: number = 10
-
-
-  configpag() {
-    this.id = this.gerarIdParaConfigDePaginacao();
-    this.config = {
-      id: this.id,
-      currentPage: this.page,
-      itemsPerPage: this.itemsPorPagina
-    };
-  }
-
-  gerarIdParaConfigDePaginacao() {
-    var result = '';
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for (var i = 0; i < 10; i++) {
-      result += characters.charAt(Math.floor(Math.random() *
-        charactersLength));
-    }
-    return result;
-  }
-
-  cadastro() {
-    this.tipoTela = 2;
-    this.categoriaForm.reset();
-  }
-
-  mudarItemsPorPage() {
-    this.page = 1
-    this.config.currentPage = this.page;
-    this.config.itemsPerPage = this.itemsPorPagina;
-  }
-
-  mudarPage(event: any) {
-    this.page = event;
-    this.config.currentPage = this.page;
-  }
-
-
-  ListarCategoriasUsuario() {
-    this.tipoTela = 1;
-
-    this.categoriaService.ListarCategoriasUsuario(this.authService.getEmailUser())
-      .subscribe((response: Array<Categoria>) => {
-        this.tableListCategorias = response;
-
-      }, (error) => console.error(error),
-        () => { })
-
-  }
-
   constructor(public menuService: MenuService,
     public formBuilder: FormBuilder,
     public sistemaService: SistemaService,
@@ -88,9 +29,6 @@ export class CategoriaComponent {
 
   ngOnInit() {
     this.menuService.menuSelecionado = 3;
-
-    this.configpag();
-    this.ListarCategoriasUsuario();
 
     this.categoriaForm = this.formBuilder.group
       (
@@ -121,8 +59,6 @@ export class CategoriaComponent {
       .subscribe((response: Categoria) => {
 
         this.categoriaForm.reset();
-        
-        this.ListarCategoriasUsuario();
 
       }, (error) => console.error(error),
         () => { })
