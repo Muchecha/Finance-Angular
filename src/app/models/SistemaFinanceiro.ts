@@ -1,6 +1,6 @@
 export class SistemaFinanceiro {
-    Id: number;
-    Nome: string;
+    id: number;
+    nome: string;
     Mes: number;
     Ano: number;
     DiaFechamento: number;
@@ -10,5 +10,5 @@ export class SistemaFinanceiro {
 
     NomePropriedade: string = "";
     mensagem: string = "";
-    notificacoes: [];
+    notificacoes: []=[];
 }
