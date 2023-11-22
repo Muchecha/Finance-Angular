@@ -24,4 +24,13 @@ export class DespesaService {
     ListarDespesasUsuario(emailUsuario: string) {
         return this.httpClient.get(`${this.baseURL}/ListarDespesasUsuario?emailUsuario=${emailUsuario}`);
     }
+
+    ObterDespesa(id: number) {
+        return this.httpClient.get(`${this.baseURL}/ObterDespesa?id=${id}`);
+    }
+
+    AtualizarDespesa(despesa: Despesa) {
+        return this.httpClient.put<Despesa>(`${this.baseURL}/AtualizarDespesa`,
+        despesa)
+    }
 }
