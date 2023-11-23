@@ -10,7 +10,7 @@
 body {
   font-family: "Poppins";
   margin: 0;
-  background: #b4e7b6;
+  background: #7a7a7a;
 
   font-style: normal;
   font-weight: 400;
@@ -36,7 +36,7 @@ label {
 }
 
 .error-input {
-  font-size: 14px;
+  font-size: 10px;
   color: red;
 }
 
@@ -258,3 +258,5 @@ table {
   cursor: default !important;
   border-radius: 5px !important;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
