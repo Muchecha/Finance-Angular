@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -12,6 +13,9 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  [x: string]: any;
+  emailFormControl: FormControl<any>;
+  matcher: ErrorStateMatcher;
 
   constructor(public formBuilder: FormBuilder,
     private router: Router,
@@ -23,7 +27,6 @@ export class LoginComponent {
   loginForm: FormGroup;
 
   ngOnInit(): void {
-
     this.loginForm = this.formBuilder.group
       (
         {
@@ -40,7 +43,6 @@ export class LoginComponent {
 
 
   loginUser() {
-
     this.loginService.login(this.dadosForm["email"].value, this.dadosForm["senha"].value).subscribe(
       token => {
         this.authService.setToken(token);
@@ -56,5 +58,19 @@ export class LoginComponent {
 
   }
 
+  hide = true;
 
+}
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
+
+
+export class InputErrorStateMatcherExample {
+  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+
+  matcher = new MyErrorStateMatcher();
 }
