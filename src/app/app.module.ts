@@ -14,6 +14,11 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuthGuard } from './pages/guards/auth-guard.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+
 const RxJS = [LoaderInterceptor, HTTPStatus];
 
 
@@ -34,7 +39,12 @@ const RxJS = [LoaderInterceptor, HTTPStatus];
     ReactiveFormsModule,  
 
     BrowserAnimationsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [
     AuthGuard,

@@ -10,7 +10,7 @@
 body {
   font-family: "Poppins";
   margin: 0;
-  background: #b4e7b6;
+  background: #7a7a7a;
 
   font-style: normal;
   font-weight: 400;
@@ -36,14 +36,14 @@ label {
 }
 
 .error-input {
-  font-size: 14px;
+  font-size: 10px;
   color: red;
 }
 
 .btn-primary {
   color: #fff;
-  background-color: #4caf50;
-  border-color: #4caf50;
+  background-color: #484b48;
+  border-color: #242424;
   box-shadow:
     0 2px 2px 0 rgba(156, 39, 176, 0.14),
     0 3px 1px -2px rgba(156, 39, 176, 0.2),
@@ -253,8 +253,10 @@ table {
 
 ::ng-deep .ngx-pagination .current {
   padding: 0.1875rem 0.525rem !important;
-  background: linear-gradient(357.83deg, #3800b0 83.6%, #6c23e2 98.76%) !important;
+  background: linear-gradient(357.83deg, #1d1d1d 83.6%, #232324 98.76%) !important;
   color: #fefefe !important;
   cursor: default !important;
   border-radius: 5px !important;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
