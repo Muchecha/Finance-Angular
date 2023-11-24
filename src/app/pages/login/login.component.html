@@ -1,19 +1,21 @@
 <div class="container-login">
 
     <div class="container-login-central">
-
-        <div class="container-header">
-            <div class="titulo-login">
-                Finance
-            </div>
-            <div class="info-login">
-                Digite seu email e senha para logar!
-            </div>
-
+        
+        <div class="container-imagem">
+            <img src="/assets/img/binance-logo-on-modern-facade-pmzx8k3litwjwnhx.jpg">
         </div>
-
         <div class="container-form">
             <form class="form-inputs" [formGroup]="loginForm" (submit)="loginUser()">
+                <div class="container-header">
+                    <div class="titulo-login">
+                        Finance
+                    </div>
+                    <div class="info-login">
+                        Digite seu email e senha para logar!
+                    </div>
+                </div>
+                
                 <div class="group-input">
                     <mat-form-field appearance="outline">
                         <mat-label>Email</mat-label>
