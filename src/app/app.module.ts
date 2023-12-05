@@ -19,6 +19,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 
+import {MatDividerModule} from '@angular/material/divider';
+
 const RxJS = [LoaderInterceptor, HTTPStatus];
 
 
@@ -44,7 +46,8 @@ const RxJS = [LoaderInterceptor, HTTPStatus];
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatDividerModule,
   ],
   providers: [
     AuthGuard,

@@ -6,8 +6,8 @@
 
     <div class="content-page">
         <div class="card-header">
-            <div class="card-title"> Cadastro de Categoria </div>
-            <div (click)="ListarCategoriasUsuario()" class="card-menu"> Listagem de Categorias </div>
+            <button mat-button class="card-title"> Cadastro de Categoria </button>
+            <button mat-button (click)="ListarCategoriasUsuario()" class="card-title"> Listagem de Categorias </button>
         </div>
 
         <form class="form-page" [formGroup]="categoriaForm" (submit)="enviar()">
@@ -50,8 +50,8 @@
 
         <div class="header-info-2">
             <div class="card-header">
-                <div class="card-title"> Listagem de Categorias </div>
-                <div (click)="cadastro()" class="card-menu"> Cadastro de Categoria </div>
+                <button mat-button (click)="cadastro()" class="caixa-menu"> Cadastro de Categoria </button>
+                <button mat-button class="caixa-menu"> Listagem de Categorias </button>
             </div>
 
 
