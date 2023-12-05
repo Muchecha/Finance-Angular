@@ -2,47 +2,44 @@
 
     <div class="grupo-menu">
         <div class="container-icone-menu">
-            <div class="caixa-menu caixa-menu-texto" (click)="selectMenu(1)"
+            <button mat-raised-button class="caixa-menu" (click)="selectMenu(1)"
                 [ngClass]="{'caixa-menu-select': this.menuService.menuSelecionado == 1, '':this.menuService.menuSelecionado!= 1}">
                 Dashboard
-            </div>
+            </button>
         </div>
     </div>
 
     <div class="grupo-menu">
         <div class="container-icone-menu">
-            <div class="caixa-menu caixa-menu-texto" (click)="selectMenu(2)"
+            <button mat-raised-button class="caixa-menu" (click)="selectMenu(2)"
                 [ngClass]="{'caixa-menu-select': this.menuService.menuSelecionado == 2, '':this.menuService.menuSelecionado!= 2}">
                 Sistema
-            </div>
+            </button>
         </div>
     </div>
 
     <div class="grupo-menu">
         <div class="container-icone-menu">
-            <div class="caixa-menu caixa-menu-texto" (click)="selectMenu(3)"
+            <button mat-raised-button class="caixa-menu" (click)="selectMenu(3)"
                 [ngClass]="{'caixa-menu-select': this.menuService.menuSelecionado == 3, '':this.menuService.menuSelecionado!= 3}">
                 Categoria
-            </div>
+            </button>
         </div>
     </div>
 
     <div class="grupo-menu">
         <div class="container-icone-menu">
-            <div class="caixa-menu caixa-menu-texto" (click)="selectMenu(4)"
+            <button mat-raised-button class="caixa-menu" (click)="selectMenu(4)"
                 [ngClass]="{'caixa-menu-select': this.menuService.menuSelecionado == 4, '':this.menuService.menuSelecionado!= 4}">
                 Despesa
-            </div>
+            </button>
         </div>
     </div>
 
 
     <div class="grupo-menu">
         <div class="container-icone-menu">
-            <div class="caixa-menu caixa-menu-texto"
-            (click)="selectMenu(100)"  >Sair</div>
+            <button mat-raised-button class="caixa-menu" (click)="selectMenu(100)">Sair</button>
         </div>
     </div>
-
-
 </div>

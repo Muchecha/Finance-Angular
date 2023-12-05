@@ -3,7 +3,7 @@
     <div class="container-login-central">
         
         <div class="container-imagem">
-            <img src="/assets/img/binance-logo-on-modern-facade-pmzx8k3litwjwnhx.jpg">
+            <img src="assets/img/Designer.jpeg">
         </div>
         <div class="container-form">
             <form class="form-inputs" [formGroup]="loginForm" (submit)="loginUser()">
@@ -34,7 +34,7 @@
                 <div class="group-input">
                     <mat-form-field appearance="outline">
                         <mat-label>Password</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'" name="senha" id="senha"
+                        <input matInput color="accent" [type]="hide ? 'password' : 'text'" name="senha" id="senha"
                             placeholder="Password" formControlName="senha" required="">
 
                         <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'"
@@ -50,9 +50,10 @@
                     </mat-form-field>
                 </div>
                 <div class="group-input">
-                    <input type="submit" class="btn-login" value="Login" [ngClass]="{'disabled' : !loginForm.valid}"
-                        [disabled]="!loginForm.valid">
-                </div>
+                    <button mat-raised-button color="accent" class="btn-login" [ngClass]="{'disabled' : !loginForm.valid}" [disabled]="!loginForm.valid" target="_blank">
+                        <mat-icon>login</mat-icon>
+                            Login</button>
+                    </div>
             </form>
         </div>
     </div>
