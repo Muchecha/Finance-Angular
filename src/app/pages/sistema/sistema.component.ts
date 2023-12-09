@@ -78,6 +78,9 @@ export class SistemaComponent {
   }
 
   sistemaForm: FormGroup;
+  checked = false;
+  disabled = false;
+  gerarCopiaDespesa = 'accent';
 
   ngOnInit() {
     this.menuService.menuSelecionado = 2;
@@ -88,7 +91,12 @@ export class SistemaComponent {
     this.sistemaForm = this.formBuilder.group
       (
         {
-          name: ['', [Validators.required]]
+          name: ['', [Validators.required]],
+          mes: ['', [Validators.required]],
+          ano: ['', [Validators.required]],
+          diaFechamento: ['', [Validators.required]],
+          mesCopia: ['', [Validators.required]],
+          anoCopia: ['', [Validators.required]],
         }
       )
   }
@@ -103,6 +111,14 @@ export class SistemaComponent {
     if (this.itemEdicao) {
 
       this.itemEdicao.nome = dados["name"].value;
+
+      this.itemEdicao.mes = dados["mes"].value;
+      this.itemEdicao.ano = dados["ano"].value;
+      this.itemEdicao.diaFechamento = dados["diaFechamento"].value;
+      this.itemEdicao.gerarCopiaDespesa = this.checked;
+      this.itemEdicao.mesCopia = dados["mesCopia"].value;
+      this.itemEdicao.anoCopia = dados["anoCopia"].value;
+
       this.itemEdicao.NomePropriedade = "";
       this.itemEdicao.mensagem = "";
       this.itemEdicao.notificacoes = [];
@@ -122,16 +138,16 @@ export class SistemaComponent {
       item.nome = dados["name"].value;
 
       item.id = 0;
-      item.Mes = 0;
-      item.Ano = 0;
-      item.DiaFechamento = 0;
-      item.GerarCopiaDespesa = true;
-      item.MesCopia = 0;
-      item.AnoCopia = 0;
+      item.mes = dados["mes"].value;
+      item.ano = dados["ano"].value;
+      item.diaFechamento = dados["diaFechamento"].value;
+      item.gerarCopiaDespesa = this.checked;
+      item.mesCopia = dados["mesCopia"].value;
+      item.anoCopia = dados["anoCopia"].value;
 
       this.sistemaService.AdicionarSistemaFinanceiro(item)
         .subscribe((response: any) => {
-          
+
           this.sistemaForm.reset();
 
           this.sistemaService.CadastrarUsuarioNoSistema(response.result.id, this.authService.getEmailUser())
@@ -154,13 +170,22 @@ export class SistemaComponent {
   edicao(id: number) {
     this.sistemaService.ObterSistemaFinanceiro(id)
       .subscribe((response: SistemaFinanceiro) => {
-        
+
         if (response) {
           this.itemEdicao = response;
           this.tipoTela = 2;
 
           var dados = this.dadorForm();
           dados["name"].setValue(this.itemEdicao.nome);
+
+          dados["mes"].setValue(this.itemEdicao.mes);
+          dados["ano"].setValue(this.itemEdicao.ano);
+          dados["diaFechamento"].setValue(this.itemEdicao.diaFechamento);
+          this.checked = this.itemEdicao.gerarCopiaDespesa;
+          dados["mesCopia"].setValue(this.itemEdicao.mesCopia);
+          dados["anoCopia"].setValue(this.itemEdicao.anoCopia);
+
+
         }
 
       },
@@ -168,6 +193,10 @@ export class SistemaComponent {
         () => {
 
         })
+  }
+
+  handleChangePago(item: any) {
+    this.checked = item.checked as boolean;
   }
 
 }

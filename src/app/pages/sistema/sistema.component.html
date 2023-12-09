@@ -29,6 +29,73 @@
 
             <div class="row">
                 <div class="group-row">
+                    <label>Mes Sistema</label>
+                    <input type="number" name="Mes" id="mes" placeholder="Mes" formControlName="mes" required />
+                    <label class="error-input" *ngIf="sistemaForm.get('mes')?.errors?.['required'] &&
+                    sistemaForm.get('mes')?.touched">
+                        Campo Obrigatório!
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="group-row">
+                    <label>Ano Sistema</label>
+                    <input type="number" name="ano" id="ano" placeholder="Ano" formControlName="ano" required />
+                    <label class="error-input" *ngIf="sistemaForm.get('ano')?.errors?.['required'] &&
+                    sistemaForm.get('ano')?.touched">
+                        Campo Obrigatório!
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="group-row">
+                    <label>Dia Inicio Mes</label>
+                    <input type="number" name="diaFechamento" id="diaFechamento" placeholder="DiaFechamento" formControlName="diaFechamento" required />
+                   <label>Sistema só trabalha com dia 1</label>
+                   <label class="error-input" *ngIf="sistemaForm.get('diaFechamento')?.errors?.['required'] &&
+                    sistemaForm.get('diaFechamento')?.touched">
+                        Campo Obrigatório!
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="group-row">
+                    <label>Mes Copia</label>
+                    <input type="number" name="mesCopia" id="mesCopia" placeholder="mesCopia" formControlName="mesCopia" required />
+                    <label class="error-input" *ngIf="sistemaForm.get('mesCopia')?.errors?.['required'] &&
+                    sistemaForm.get('mesCopia')?.touched">
+                        Campo Obrigatório!
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="group-row">
+                    <label>Ano Copia</label>
+                    <input type="number" name="anoCopia" id="anoCopia" placeholder="Ano Copia" formControlName="anoCopia" required />
+                    <label class="error-input" *ngIf="sistemaForm.get('anoCopia')?.errors?.['required'] &&
+                    sistemaForm.get('anoCopia')?.touched">
+                        Campo Obrigatório!
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="group-row">
+
+                    <mat-slide-toggle class="group-slide" [color]="gerarCopiaDespesa" [checked]="checked" [disabled]="disabled"
+                        (change)="handleChangePago($event)">
+                        Gerar Copia das Despesas?
+                    </mat-slide-toggle>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="group-row">
                     <input type="submit" value="Salvar" class="btn-primary" />
                 </div>
             </div>
