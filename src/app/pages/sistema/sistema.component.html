@@ -27,6 +27,7 @@
                 </div>
             </div>
 
+
             <div class="row">
                 <div class="group-row">
                     <label>Mes Sistema</label>
@@ -52,9 +53,10 @@
             <div class="row">
                 <div class="group-row">
                     <label>Dia Inicio Mes</label>
-                    <input type="number" name="diaFechamento" id="diaFechamento" placeholder="DiaFechamento" formControlName="diaFechamento" required />
-                   <label>Sistema só trabalha com dia 1</label>
-                   <label class="error-input" *ngIf="sistemaForm.get('diaFechamento')?.errors?.['required'] &&
+                    <input type="number" name="diaFechamento" id="diaFechamento" placeholder="DiaFechamento"
+                        formControlName="diaFechamento" required />
+                    <label>Sistema só trabalha com dia 1</label>
+                    <label class="error-input" *ngIf="sistemaForm.get('diaFechamento')?.errors?.['required'] &&
                     sistemaForm.get('diaFechamento')?.touched">
                         Campo Obrigatório!
                     </label>
@@ -64,7 +66,8 @@
             <div class="row">
                 <div class="group-row">
                     <label>Mes Copia</label>
-                    <input type="number" name="mesCopia" id="mesCopia" placeholder="mesCopia" formControlName="mesCopia" required />
+                    <input type="number" name="mesCopia" id="mesCopia" placeholder="mesCopia" formControlName="mesCopia"
+                        required />
                     <label class="error-input" *ngIf="sistemaForm.get('mesCopia')?.errors?.['required'] &&
                     sistemaForm.get('mesCopia')?.touched">
                         Campo Obrigatório!
@@ -75,7 +78,8 @@
             <div class="row">
                 <div class="group-row">
                     <label>Ano Copia</label>
-                    <input type="number" name="anoCopia" id="anoCopia" placeholder="Ano Copia" formControlName="anoCopia" required />
+                    <input type="number" name="anoCopia" id="anoCopia" placeholder="Ano Copia"
+                        formControlName="anoCopia" required />
                     <label class="error-input" *ngIf="sistemaForm.get('anoCopia')?.errors?.['required'] &&
                     sistemaForm.get('anoCopia')?.touched">
                         Campo Obrigatório!
@@ -86,23 +90,111 @@
             <div class="row">
                 <div class="group-row">
 
-                    <mat-slide-toggle class="group-slide" [color]="gerarCopiaDespesa" [checked]="checked" [disabled]="disabled"
-                        (change)="handleChangePago($event)">
+                    <mat-slide-toggle class="group-slide" [color]="gerarCopiaDespesa" [checked]="checked"
+                        [disabled]="disabled" (change)="handleChangePago($event)">
                         Gerar Copia das Despesas?
                     </mat-slide-toggle>
 
                 </div>
             </div>
 
+
+
             <div class="row">
                 <div class="group-row">
                     <input type="submit" value="Salvar" class="btn-primary" />
                 </div>
             </div>
+
         </form>
 
+
+        <div class="container-list-user"
+            *ngIf="tipoTela ==2 && this.itemEdicao && this.itemEdicao.id > 0 && tableListUsuariosistema">
+
+            <div class="content-page">
+                <div class="card-header">
+                    <div class="header-info-2">
+                        <div class="card-header">
+                            <div class="card-title"> Lista de usuários do Sistema</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-page">
+
+                    <div class="row">
+                        <div class="group-row">
+                            <label>Informe o E-mail para add usuário no sistema</label>
+                            <input type="text" name="email" id="email"  [(ngModel)]="emailUsuarioSistema" placeholder="E-mail"  />
+                            <label class="error-input" *ngIf="!emailUsuarioSistemaValid">
+                        {{textValid}}
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+    
+                        <div class="group-row">
+                            <input type="submit" value="Add" class="btn-primary" (click)="addUsuarioSistema()" />
+                        </div>
+                        
+                    </div>
+
+                    <table cellspacing="0" cellpadding="0">
+                        <thead>
+                            <tr>
+                                <!-- <td></td> -->
+                                <td>Código</td>
+                                <td>Nome</td>
+                               <td>Ação</td> 
+            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="select-item" *ngFor="let item of tableListUsuariosistema | paginate: config2; let i = index"
+                                class="linha-table" [ngClass]="{'linha-cinza' : i % 2 == 0, 'linha-branca' : i % 2 !== 0}">
+            
+                                <td>{{item.id}}</td>
+                                <td>{{item.emailUsuario}}</td>
+            
+                                <td (click)="excluir(item.id)" > Excluir</td> 
+            
+                            </tr>
+                        </tbody>
+                    </table>
+            
+                    <div class="tabela-footer" *ngIf="paginacao2 && tableListUsuariosistema">
+                        <label class="mostrar">Mostrar</label>
+                        <ng-select (change)="mudarItemsPorPage2()" [(ngModel)]="itemsPorPagina2" [clearable]="false"
+                            [searchable]="false" class="mostrar-drop">
+                            <ng-option [value]="10">10</ng-option>
+                            <ng-option [value]="50">50</ng-option>
+                            <ng-option [value]="100">100</ng-option>
+                        </ng-select>
+            
+                        <div class="container-pagination">
+                            <pagination-controls id="{{this.id2}}" previousLabel="Anterior" nextLabel="Próximo"
+                                [responsive]="true" (pageChange)="mudarPage2($event)">
+                            </pagination-controls>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
     </div>
+
 </div>
+
+
+
 
 <div *ngIf="tipoTela == 1" class="container-base">
 
@@ -153,7 +245,7 @@
                     </pagination-controls>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>
