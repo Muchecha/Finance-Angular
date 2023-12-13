@@ -4,6 +4,7 @@ import { SistemaFinanceiro } from 'src/app/models/SistemaFinanceiro';
 import { AuthService } from 'src/app/services/auth.service';
 import { MenuService } from 'src/app/services/menu.service';
 import { SistemaService } from 'src/app/services/sistema.service';
+import { UsuarioSistemaFinanceiro } from 'src/app/services/usuario-sistema.service';
 
 @Component({
   selector: 'app-sistema',
@@ -21,12 +22,26 @@ export class SistemaComponent {
   paginacao: boolean = true;
   itemsPorPagina: number = 10
 
+  tableListUsuariosistema: Array<any>;
+  id2: string;
+  page2: number = 1;
+  config2: any;
+  paginacao2: boolean = true;
+  itemsPorPagina2: number = 10
+
   configpag() {
     this.id = this.gerarIdParaConfigDePaginacao();
     this.config = {
       id: this.id,
       currentPage: this.page,
       itemsPerPage: this.itemsPorPagina
+    };
+
+    this.id2 = this.gerarIdParaConfigDePaginacao();
+    this.config2 = {
+      id: this.id2,
+      currentPage: this.page2,
+      itemsPerPage: this.itemsPorPagina2
     };
   }
 
@@ -57,6 +72,17 @@ export class SistemaComponent {
     this.config.currentPage = this.page;
   }
 
+  mudarItemsPorPage2() {
+    this.page2 = 1
+    this.config2.currentPage = this.page2;
+    this.config2.itemsPerPage = this.itemsPorPagina2;
+  }
+
+  mudarPage2(event: any) {
+    this.page2 = event;
+    this.config2.currentPage = this.page2;
+  }
+
   ListaSistemasUsuario() {
 
     this.itemEdicao = null;
@@ -74,7 +100,8 @@ export class SistemaComponent {
   constructor(public menuService: MenuService,
     public formBuilder: FormBuilder,
     public sistemaService: SistemaService,
-    public authService: AuthService) {
+    public authService: AuthService,
+    public usuarioSistemaFinanceiro: UsuarioSistemaFinanceiro) {
   }
 
   sistemaForm: FormGroup;
@@ -185,7 +212,7 @@ export class SistemaComponent {
           dados["mesCopia"].setValue(this.itemEdicao.mesCopia);
           dados["anoCopia"].setValue(this.itemEdicao.anoCopia);
 
-
+          this.ListarUsuariosSistema();
         }
 
       },
@@ -199,4 +226,51 @@ export class SistemaComponent {
     this.checked = item.checked as boolean;
   }
 
+emailUsuarioSistema: string = "";
+emailUsuarioSistemaValid: boolean = true;
+textValid: string = "Campo Obrigatório!";
+
+  ListarUsuariosSistema() {
+    this.usuarioSistemaFinanceiro.ListarUsuariosSistema(this.itemEdicao.id)
+    .subscribe((response: Array<any>) => {
+      this.tableListUsuariosistema = response
+    })
+  }
+
+  excluir(id: number) {
+    this.usuarioSistemaFinanceiro.DeleteUsuarioSistemaFinanceiro(id)
+      .subscribe((reponse: SistemaFinanceiro) => {
+        if (reponse) {
+          this.edicao(this.itemEdicao.id)
+          this.emailUsuarioSistema = "";
+        }
+
+      },
+        (error) => console.error(error),
+        () => {
+
+        })
+  }
+
+
+  addUsuarioSistema() {
+    this.emailUsuarioSistemaValid = true;
+
+    if (!this.emailUsuarioSistema) {
+      this.emailUsuarioSistemaValid = false;
+    }
+    else {
+
+      this.sistemaService.CadastrarUsuarioNoSistema(this.itemEdicao.id, this.emailUsuarioSistema)
+        .subscribe((response: any) => {
+
+          if (response) {
+            this.edicao(this.itemEdicao.id)
+            this.emailUsuarioSistema = "";
+          }
+
+        }, (error) => console.error(error),
+          () => { })
+    }
+  }
 }
