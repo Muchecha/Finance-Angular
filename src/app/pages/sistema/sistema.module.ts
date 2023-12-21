@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MatIconModule} from '@angular/material/icon';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule(
@@ -25,7 +26,8 @@ import { MatIconModule} from '@angular/material/icon';
             NgxPaginationModule,
             FormsModule,
             NgSelectModule,
-            MatIconModule
+            MatIconModule,
+            MatSlideToggleModule
         ]
     }
 )
