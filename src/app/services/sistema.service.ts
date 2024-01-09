@@ -37,4 +37,9 @@ export class SistemaService {
             sistemaFinanceiro)
     }
 
+    ExecuteCopiaDespesasSistemafinanceiro() {
+        debugger
+        return this.httpClient.post<any>(`${this.baseURL}/ExecuteCopiaDepesasSistemaFinanceiro`, null)
+    }
+
 }

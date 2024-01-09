@@ -32,15 +32,20 @@ export class SidebarComponent {
         this.router.navigate(['/despesa']);
         break;
 
-        case 100:
-          localStorage.clear();          
-          this.router.navigate(['/login']);
-          break;
+      case 5:
+        debugger
+        this.router.navigate(['/usuario']);
+        break;
+
+      case 100:
+        localStorage.clear();
+        this.router.navigate(['/login']);
+        break;
 
       default:
         break;
     }
-    
+
     this.menuService.menuSelecionado = menu;
 
   }

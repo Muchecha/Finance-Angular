@@ -156,6 +156,7 @@ export class DespesaComponent {
       item.pago = this.checked;
       item.dataVencimento = dados["data"].value;
       item.idCategoria = parseInt(this.categoriaSelect.id);
+      item.tipoDespesa = 1;
 
       this.despesaService.AdicionarDespesa(item)
         .subscribe((response: Despesa) => {
