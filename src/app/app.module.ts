@@ -20,6 +20,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 
 import {MatDividerModule} from '@angular/material/divider';
+import { UsuarioComponent } from './pages/usuario/usuario.component';
 
 const RxJS = [LoaderInterceptor, HTTPStatus];
 
@@ -27,8 +28,7 @@ const RxJS = [LoaderInterceptor, HTTPStatus];
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-  
+    LoginComponent
   ],
   imports: [
     BrowserModule,

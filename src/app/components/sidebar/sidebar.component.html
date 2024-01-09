@@ -36,6 +36,15 @@
         </div>
     </div>
 
+    <div class="grupo-menu">
+        <div class="container-icone-menu">
+            <button mat-raised-button class="caixa-menu" (click)="selectMenu(5)"
+                [ngClass]="{'caixa-menu-select': this.menuService.menuSelecionado == 5, '':this.menuService.menuSelecionado!= 5}">
+                Usuario
+            </button>
+        </div>
+    </div>
+
 
     <div class="grupo-menu">
         <div class="container-icone-menu">
